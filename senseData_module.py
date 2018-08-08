@@ -9,8 +9,8 @@ def getSensehatTemp(sense_obj):
     #Getting temperature from sensehat temperature sensor
     temp = sense_obj.getSensehatTemp()
     #Getting temperature from the CPU of the Raspberry Pi
-    res = os.popen("vcgencmd measure_temp").readline()
-    cpu_temp = float(res.replace("temp=","").replace("'C/n",""))
+    res = os.popen('vcgencmd measure_temp').readline()
+    cpu_temp = res.replace("temp=","").replace("'C\n","")   
     #Running Calabiration Method
     calabirateTemp(temp,cpu_temp)
 
