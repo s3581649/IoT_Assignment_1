@@ -4,14 +4,19 @@ import time
 import sqlite3
 dbname='sensehat.db'
 
-def setTemp():
+def setTempAndHumidity():
     sense = SenseHat()
     temp = sd.getSensehatTemp(sense)
-    logData(temp)
+    humidity = sd.getSensehatHumidity(sense)
+    logData(temp,humidity)
+    sense.clear()
 
-def logData(temp):
+def logData(temp,humidity):
     conn=sqlite3.connect(dbname)
     curs=conn.cursor()
-    curs.execute("INSERT INTO SENSEHAT_data values(datetime('now'), (?))", (temp,))
+    curs.execute("INSERT INTO SENSEHAT_data values(datetime('now'), (?), (?))", (temp,),(humidity,))
     conn.commit()
     conn.close()
+
+def displayLog():
+    
