@@ -1,6 +1,4 @@
-import time
 import os
-import sqlite3
 from sense_hat import SenseHat
 #Create sensehat object
 
