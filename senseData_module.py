@@ -18,4 +18,4 @@ def getSensehatTemp(sense_obj):
 #line 124
 def calabirateTemp(temp,cpu_temp):
     calab_temp = temp - ((cpu_temp-temp)/5.466)
-    return(calab_temp)
+    return(round(calab_temp,1)
