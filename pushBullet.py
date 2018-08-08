@@ -17,11 +17,3 @@ def send_notification_via_pushbullet(title, body):
         raise Exception('Error: Message was not sent :(')
     else:
         print('Message was sent!')
-
-#main function
-def main():
-    ip_address = os.popen('hostname -I').read()
-    send_notification_via_pushbullet(ip_address, "It is below 20C, Please remember to bring a sweater")
-
-#Execute
-main()
