@@ -15,7 +15,7 @@ def setTempAndHumidity():
     sense.clear()
     
     if temp < temp_threshold:
-        pb.send_notification_via_pushbullet("Wheather Update!", "It is below 20C, Please remember to bring a sweater")
+        pb.send_notification_via_pushbullet("Wheather Update!", "It is below " + temp_threshold + "C, Please remember to bring a sweater")
 
 def logData(temp,humidity):
     conn=sqlite3.connect(dbname)
