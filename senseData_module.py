@@ -1,6 +1,8 @@
+#import required modules
 import os
 from sense_hat import SenseHat
 
+#Getting the humidity from the sensehat module
 def getHumidity(sense_obj):
     humidity = sense_obj.get_humidity()
     return(round(humidity,1))

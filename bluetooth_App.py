@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
+"""
+REFERENCE: This script was partially taken from the RMIT IoT Tute/Lab Code Archive
+"""
+#importing modules
 import bluetooth
 import os
 import time
 from sense_hat import SenseHat
 import senseData_module as sd
 
-# Main function
+# Main function, requests user input for name and phone name
 def main():
     user_name = input("Enter your name: ")
     device_name = input("Enter the name of your phone: ")
