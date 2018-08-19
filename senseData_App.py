@@ -25,7 +25,7 @@ def setTempAndHumidity():
 def logData(temp,humidity):
     conn=sqlite3.connect(dbname)
     curs=conn.cursor()
-    curs.execute("INSERT INTO SENSEHAT_data values(datetime('now'), (?), (?))", (temp,humidity))
+    curs.execute("INSERT INTO SENSEHAT_data values(datetime('now', 'localtime'), (?), (?))", (temp,humidity))
     conn.commit()
     conn.close()
 
