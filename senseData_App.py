@@ -4,7 +4,6 @@ from sense_hat import SenseHat
 import os
 import time
 import sqlite3
-from user_temp import temp_threshold
 dbname='sensehat.db'
 
 def setTempAndHumidity():
@@ -12,10 +11,8 @@ def setTempAndHumidity():
     temp = sd.getTemp(sense)
     humidity = sd.getHumidity(sense)
     logData(temp,humidity)
+    pushbullet_notification(temp)
     sense.clear()
-    
-    if temp < temp_threshold:
-        pb.send_notification_via_pushbullet("Wheather Update!", "It is below " + temp_threshold + "C, Please remember to bring a sweater")
 
 def logData(temp,humidity):
     conn=sqlite3.connect(dbname)
@@ -36,6 +33,13 @@ def displayLog(temp):
 
     sense = SenseHat()
     sense.show_message('Time is {}'.format(temp), scroll_speed=0.05)
+
+def pushbullet_notification(temp):
+    file = open('/home/pi/Assignment_1/user_temperature.txt', 'r')
+    temp_threshold = file.read(2)
+    
+    if temp < int(temp_threshold):
+        pb.send_notification_via_pushbullet("Wheather Update!", "It is below " + temp_threshold + "C, Please remember to bring a sweater")
 
 #main function
 def main():

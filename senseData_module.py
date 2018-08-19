@@ -3,7 +3,7 @@ from sense_hat import SenseHat
 
 def getHumidity(sense_obj):
     humidity = sense_obj.get_humidity()
-    return(humidity)
+    return(round(humidity,1))
     
 def getTemp(sense_obj):
     #Getting temperature from sensehat temperature sensor
