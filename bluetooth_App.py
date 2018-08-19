@@ -29,7 +29,7 @@ def search(user_name, device_name):
                 device_address = mac_address
                 break
         if device_address is not None:
-            print("Hi {}! Your phone ({}) has the MAC address: {}".format(user_name, device_name, device_address))
+            print("Hello {}! Your phone ({}) has the MAC address: {}".format(user_name, device_name, device_address))
             sense = SenseHat()
             temp = sd.getTemp(sense)
             sense.show_message("Hi {}! Current Temp is {}*c".format(user_name, temp), scroll_speed=0.05)
