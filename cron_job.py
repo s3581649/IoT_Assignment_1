@@ -9,5 +9,5 @@ cron.remove_all()
 job  = cron.new(command='/home/pi/Assignment_1/senseData_App.py')
 
 #job settings
-job.minute.every(1)
+job.minute.every(5)
 cron.write()
