@@ -9,18 +9,12 @@ import time
 from sense_hat import SenseHat
 import senseData_module as sd
 
-# Main function, requests user input for name and phone name
-def main():
-    user_name = input("Enter your name: ")
-    device_name = input("Enter the name of your phone: ")
-    search(user_name, device_name)
-
 # Search for device based on device's name
-def search(user_name, device_name):
+def search_devices(user_name, device_name):
     while True:
         device_address = None
         dt = time.strftime("%a, %d %b %y %H:%M:%S", time.localtime())
-        print("\nCurrently: {}".format(dt))
+        print("\nCurrently: {}, searching for {}".format(dt, device_name))
         time.sleep(3) #Sleep three seconds 
         nearby_devices = bluetooth.discover_devices()
 
@@ -29,12 +23,18 @@ def search(user_name, device_name):
                 device_address = mac_address
                 break
         if device_address is not None:
-            print("Hello {}! Your phone ({}) has the MAC address: {}".format(user_name, device_name, device_address))
             sense = SenseHat()
+            sense.show_message("Device ({}) was found! Hello ({}) your MAC address is: {}".format(device_name, user_name, device_address), scroll_speed=0.04)
             temp = sd.getTemp(sense)
             sense.show_message("Hi {}! Current Temp is {}*c".format(user_name, temp), scroll_speed=0.05)
         else:
-            print("Could not find target device nearby...")
+            print("Was not able to detect {}, please try again!".format(device_name))
+
+# Main function, requests user input for name and phone name
+def main():
+    user_name = input("Enter your name: ")
+    device_name = input("Enter the name of your phone: ")
+    search_devices(user_name, device_name)
 
 #Execute program
 main()
